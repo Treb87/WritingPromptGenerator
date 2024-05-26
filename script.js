@@ -16,7 +16,6 @@ const threatOptions = ['a deadly virus', 'an ancient enemy', 'creatures out of n
 const selectRand = (arr) => arr[getRandomNumber(arr.length)];
 //function to select random properties for a prompt object
 
-
 const newStoryPromptFactory = () => {
     return {
         setting: selectRand(settingOptions),
@@ -26,11 +25,14 @@ const newStoryPromptFactory = () => {
     }
 };  
 
+// Single storage object for the elements of the prompt.  Used Object instead of array to simplify future functionality to keep a particular value and reroll others
 let storyPrompt = {};
 
+// Function to return the string for the user to consume
 const promptStatement = () => {
     storyPrompt = newStoryPromptFactory();
     return `In ${storyPrompt.setting}, a ${storyPrompt.mainCharacter} struggles to protect their ${storyPrompt.scale} from ${storyPrompt.threat}...`
 };
 
+//Not sure if this is necessary.  Will work on the interactive website unit to determine hot to pass the result to the HTML...  For now, good POC
 console.log(promptStatement());
